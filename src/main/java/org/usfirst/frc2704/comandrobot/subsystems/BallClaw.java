@@ -1,12 +1,10 @@
 package org.usfirst.frc2704.comandrobot.subsystems;
 
 import org.usfirst.frc2704.comandrobot.commands.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
 
