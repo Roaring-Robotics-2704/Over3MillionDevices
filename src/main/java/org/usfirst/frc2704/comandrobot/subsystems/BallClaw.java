@@ -23,7 +23,7 @@ public class BallClaw extends Subsystem {
     }
 
     public void grab() {
-        grab.set(Robot.oi.joystick2.getX());
+        grab.set(Robot.oi.joystick2.getZ());
     }
     public void stopGrab() {
         grab.set(0);
