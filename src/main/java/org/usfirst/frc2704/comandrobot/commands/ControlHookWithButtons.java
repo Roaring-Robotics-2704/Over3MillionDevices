@@ -24,8 +24,12 @@ public class ControlHookWithButtons extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.oi.joystick1_button1.whenPressed(Robot.HatchHook.extend());
-    Robot.oi.joystick1_button2.whenPressed(Robot.HatchHook.retract());
+    if (Robot.oi.joystick1_button1.get() == true) {
+      Robot.hatchhook.extend();
+    }
+    if (Robot.oi.joystick1_button2.get() == true) {
+      Robot.hatchhook.retract();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
