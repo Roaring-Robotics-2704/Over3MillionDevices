@@ -2,6 +2,7 @@ package org.usfirst.frc2704.comandrobot.subsystems;
 
 import org.usfirst.frc2704.comandrobot.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.hal.util.UncleanStatusException;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -37,7 +38,7 @@ public class BallClaw extends Subsystem {
         tilt.set(0);
     }
 
-    @Override
+    //@Override
     public void initDefaultCommand() {
       //Set the default command for a subsystem here.
       //setDefaultCommand(new MySpecialCommand());
