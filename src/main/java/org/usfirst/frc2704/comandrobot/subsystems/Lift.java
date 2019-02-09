@@ -11,22 +11,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 /**
  * Add your docs here.
  */
-public class lift extends Subsystem {
+public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 private WPI_TalonSRX lifttalon;
 
-public lift(){
+public Lift(){
 
   lifttalon = new WPI_TalonSRX(1);
-
+  addChild("lift talon", lifttalon);
+  lifttalon.setInverted(false);
 }
-public void lift(){
-
+public void Liftup(){
+  
+}
+public void Liftdown(){
+  
 }
   @Override
   public void initDefaultCommand() {

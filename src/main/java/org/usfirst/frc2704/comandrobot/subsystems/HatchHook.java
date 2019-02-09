@@ -23,10 +23,13 @@ public class HatchHook extends Subsystem {
   private Timer solenoidTimer;
 
   public HatchHook() {
+    
     compressor = new Compressor(0);
     addChild("compressor", compressor);
+
     solenoid1 = new DoubleSolenoid(1, 2);
     addChild("solenoid", solenoid1);
+
     solenoid2 = new DoubleSolenoid(3, 4);
     addChild("solenoid2", solenoid2);
   }
