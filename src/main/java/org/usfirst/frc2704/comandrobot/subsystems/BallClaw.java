@@ -10,31 +10,31 @@ import org.usfirst.frc2704.comandrobot.Robot;
 
 public class BallClaw extends Subsystem {
 
-    private PWMTalonSRX grab;
-    private PWMTalonSRX tilt;
+    private PWMTalonSRX grabMotor;
+    private PWMTalonSRX tiltMotor;
 
     public BallClaw() {
-        grab = new PWMTalonSRX(1);
-        addChild("grab", grab);
-        grab.setInverted(false);
-        tilt = new PWMTalonSRX(3);
-        addChild("tilt", tilt);
-        tilt.setInverted(false);
+        grabMotor = new PWMTalonSRX(1);
+        addChild("grabMotor", grabMotor);
+        grabMotor.setInverted(false);
+        tiltMotor = new PWMTalonSRX(3);
+        addChild("tiltMotor", tiltMotor);
+        tiltMotor.setInverted(false);
     }
 
     public void grab() {
-        grab.set(Robot.oi.joystick2.getZ());
+        grabMotor.set(Robot.oi.joystick2.getZ());
     }
     public void stopGrab() {
-        grab.set(0);
+        grabMotor.set(0);
     }
 
     public void tilt() {
-        tilt.set(Robot.oi.joystick2.getY());
+        tiltMotor.set(Robot.oi.joystick2.getY());
     }
 
     public void stoptilt() {
-        tilt.set(0);
+        tiltMotor.set(0);
     }
 
     @Override

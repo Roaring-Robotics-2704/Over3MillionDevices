@@ -19,12 +19,18 @@ public class LiftUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.hatchhook.turnOn();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.liftUp();
+    if (Robot.oi.joystick1_button1.get() == true) {
+      Robot.hatchhook.extend();
+    }
+    if (Robot.oi.joystick1_button2.get() == true) {
+      Robot.hatchhook.retract();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +42,7 @@ public class LiftUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    
+    Robot.hatchhook.turnOff();
   }
 
   // Called when another command which requires one or more of the same
