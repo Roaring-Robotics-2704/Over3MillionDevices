@@ -11,15 +11,15 @@ import org.usfirst.frc2704.comandrobot.Robot;
 public class BallClaw extends Subsystem {
 
     private PWMTalonSRX grab;
-    private PWMTalonSRX lift;
+    private PWMTalonSRX tilt;
 
     public BallClaw() {
         grab = new PWMTalonSRX(1);
         addChild("grab", grab);
         grab.setInverted(false);
-        lift = new PWMTalonSRX(3);
-        addChild("lift", lift);
-        lift.setInverted(false);
+        tilt = new PWMTalonSRX(3);
+        addChild("tilt", tilt);
+        tilt.setInverted(false);
     }
 
     public void grab() {
@@ -29,12 +29,12 @@ public class BallClaw extends Subsystem {
         grab.set(0);
     }
 
-    public void lift() {
-        lift.set(Robot.oi.joystick2.getY());
+    public void tilt() {
+        tilt.set(Robot.oi.joystick2.getY());
     }
 
-    public void stopLift() {
-        lift.set(0);
+    public void stoptilt() {
+        tilt.set(0);
     }
 
     @Override
