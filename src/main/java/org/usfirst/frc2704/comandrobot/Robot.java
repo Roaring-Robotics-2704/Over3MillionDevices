@@ -108,8 +108,10 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         teleopCommand = new DriveWithJoystick();
         teleopCommand2 = new MoveClawWithJoystick();
+        teleopCommand3 = new ControlHookWithJoystick();
         teleopCommand.start();
         teleopCommand2.start();
+        teleopCommand3.start();
     }
 
     /**
