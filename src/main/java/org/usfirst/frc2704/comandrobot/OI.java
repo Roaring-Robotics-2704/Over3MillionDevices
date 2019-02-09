@@ -64,7 +64,6 @@ public class OI {
 
         joystick1 = new Joystick(0);
         joystick2 = new Joystick(1);
-        
         Button joystick1_button1 = new JoystickButton(joystick1, 1), joystick1_button2 = new JoystickButton(joystick1, 2);
 
         // SmartDashboard Buttons
