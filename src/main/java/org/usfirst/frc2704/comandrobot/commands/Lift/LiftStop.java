@@ -8,7 +8,7 @@
 package org.usfirst.frc2704.comandrobot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+import org.usfirst.frc2704.comandrobot.Robot;
 public class LiftStop extends Command {
   public LiftStop() {
     // Use requires() here to declare subsystem dependencies
@@ -23,6 +23,7 @@ public class LiftStop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.lift.liftStop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
