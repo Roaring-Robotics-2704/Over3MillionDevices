@@ -24,6 +24,8 @@ public class LiftDown extends Command {
   @Override
   protected void execute() {
   Robot.lift.liftDown();
+  if (Robot.oi.joystick1Buttons[3].get() == true){
+  }
   }
 
   // Make this return true when this Command no longer needs to run execute()
