@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.Timer;
 public class HatchHook extends Subsystem {
 
   private DoubleSolenoid solenoid1;
-  private DoubleSolenoid solenoid2;
   private Compressor compressor;
   private Timer solenoidTimer;
   private Boolean timerOn;
@@ -29,9 +28,6 @@ public class HatchHook extends Subsystem {
 
     solenoid1 = new DoubleSolenoid(1, 2);
     addChild("solenoid", solenoid1);
-
-    solenoid2 = new DoubleSolenoid(3, 4);
-    addChild("solenoid2", solenoid2);
   }
 
   public void startTimer() {
@@ -52,7 +48,6 @@ public class HatchHook extends Subsystem {
 
   public void extend() {
     solenoid1.set(DoubleSolenoid.Value.kForward);
-    solenoid2.set(DoubleSolenoid.Value.kForward);
     startTimer();
     if (solenoidTimer.get() == 0.25) {
       solenoidTimer.stop();
@@ -60,19 +55,16 @@ public class HatchHook extends Subsystem {
     }
     solenoidTimer.stop();
     solenoid1.set(DoubleSolenoid.Value.kOff);
-    solenoid2.set(DoubleSolenoid.Value.kOff);
   }
 
   public void retract() {
     solenoid1.set(DoubleSolenoid.Value.kReverse);
-    solenoid2.set(DoubleSolenoid.Value.kReverse);
     startTimer();
     if (solenoidTimer.get() == 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }
     solenoid1.set(DoubleSolenoid.Value.kOff);
-    solenoid2.set(DoubleSolenoid.Value.kOff);
   }
 
   @Override
