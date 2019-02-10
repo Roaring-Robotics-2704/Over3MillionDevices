@@ -9,6 +9,7 @@ package org.usfirst.frc2704.comandrobot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class LiftUp extends Command {
   public LiftUp() {
@@ -19,19 +20,17 @@ public class LiftUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hatchhook.turnOn();
+   
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.oi.joystick1Buttons[1].get() == true) {
-      Robot.hatchhook.extend();
+    Robot.lift.liftUp();
+    
+    if (Robot.oi.joystick1Buttons[5].get() == true){
     }
-    if (Robot.oi.joystick1Buttons[2].get() == true) {
-      Robot.hatchhook.retract();
-    }
-  }
+  }    
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -42,8 +41,9 @@ public class LiftUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.hatchhook.turnOff();
+    Robot.lift.liftStop();
   }
+  
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

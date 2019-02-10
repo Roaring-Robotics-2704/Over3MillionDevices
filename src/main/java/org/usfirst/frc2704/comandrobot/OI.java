@@ -77,7 +77,7 @@ public class OI {
         joystick1Buttons = initJoystickButtons(joystick1);
         joystick2Buttons = initJoystickButtons(joystick2);
         // for example, access a button #5 on joystick 2 anywhere by doing:
-        // Robot.oi.joystick2Buttons[5]
+        // Robot.oi.joystick1Buttons[5]
 
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());

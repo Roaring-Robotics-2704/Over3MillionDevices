@@ -8,7 +8,11 @@
 package org.usfirst.frc2704.comandrobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDBase;
+import edu.wpi.first.wpilibj.TimedRobot;
 /**
  * Add your docs here.
  */
@@ -17,20 +21,24 @@ public class Lift extends Subsystem {
   // here. Call these from Commands.
 private WPI_TalonSRX liftTalon;
 
-  public Lift(){
-    liftTalon = new WPI_TalonSRX(1);
-    addChild("lift talon", liftTalon);
-    liftTalon.setInverted(false);
-  }
-  public void liftUp(){
-    liftTalon.set(0.5);
-  }
-  public void liftDown(){
-    liftTalon.set(0.5);
-  }
-  public void liftStop(){
-    liftTalon.set(0);
-  }
+public Lift(){
+  liftTalon = new WPI_TalonSRX(1);
+  addChild("lift talon", liftTalon);
+  liftTalon.setInverted(false);
+}
+
+public void liftUp(){
+  liftTalon.set(0.5);
+}
+
+public void liftDown(){
+  liftTalon.set(0.5);
+}
+
+public void liftStop(){
+  liftTalon.set(0);
+}
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
