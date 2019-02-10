@@ -24,8 +24,8 @@ public class MoveClawWithJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ballclaw.grab();
-    Robot.ballclaw.tilt();
+    Robot.ballclaw.setGrab(Robot.oi.joystick2.getY());
+    Robot.ballclaw.setTilt(Robot.oi.joystick2.getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()

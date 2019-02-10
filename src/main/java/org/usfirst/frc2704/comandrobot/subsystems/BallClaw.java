@@ -1,12 +1,7 @@
 package org.usfirst.frc2704.comandrobot.subsystems;
 
-import org.usfirst.frc2704.comandrobot.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc2704.comandrobot.Robot;
 
 public class BallClaw extends Subsystem {
 
@@ -22,15 +17,16 @@ public class BallClaw extends Subsystem {
         tiltMotor.setInverted(false);
     }
 
-    public void grab() {
-        grabMotor.set(Robot.oi.joystick2.getZ());
+    public void setGrab(double in) {
+        grabMotor.set(in);
     }
+
     public void stopGrab() {
         grabMotor.set(0);
     }
 
-    public void tilt() {
-        tiltMotor.set(Robot.oi.joystick2.getY());
+    public void setTilt(double in) {
+        tiltMotor.set(in);
     }
 
     public void stoptilt() {

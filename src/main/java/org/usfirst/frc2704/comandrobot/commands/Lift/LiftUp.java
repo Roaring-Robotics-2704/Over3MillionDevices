@@ -25,10 +25,10 @@ public class LiftUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.oi.joystick1_button1.get() == true) {
+    if (Robot.oi.joystick1Buttons[1].get() == true) {
       Robot.hatchhook.extend();
     }
-    if (Robot.oi.joystick1_button2.get() == true) {
+    if (Robot.oi.joystick1Buttons[2].get() == true) {
       Robot.hatchhook.retract();
     }
   }
