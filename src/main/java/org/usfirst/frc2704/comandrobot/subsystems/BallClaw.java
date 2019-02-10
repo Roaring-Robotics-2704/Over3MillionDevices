@@ -2,17 +2,18 @@ package org.usfirst.frc2704.comandrobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class BallClaw extends Subsystem {
 
-    private PWMTalonSRX grabMotor;
-    private PWMTalonSRX tiltMotor;
+    private WPI_TalonSRX grabMotor;
+    private WPI_TalonSRX tiltMotor;
 
     public BallClaw() {
-        grabMotor = new PWMTalonSRX(1);
+        grabMotor = new WPI_TalonSRX(3);
         addChild("grabMotor", grabMotor);
         grabMotor.setInverted(false);
-        tiltMotor = new PWMTalonSRX(3);
+        tiltMotor = new WPI_TalonSRX(4);
         addChild("tiltMotor", tiltMotor);
         tiltMotor.setInverted(false);
     }
