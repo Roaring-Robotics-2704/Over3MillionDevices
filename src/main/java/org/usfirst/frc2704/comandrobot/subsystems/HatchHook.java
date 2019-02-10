@@ -20,6 +20,7 @@ public class HatchHook extends Subsystem {
   private DoubleSolenoid solenoid2;
   private Compressor compressor;
   private Timer solenoidTimer;
+  private Boolean timerOn;
 
   public HatchHook() {
     
@@ -33,6 +34,14 @@ public class HatchHook extends Subsystem {
     addChild("solenoid2", solenoid2);
   }
 
+  public void startTimer() {
+    if (timerOn == false) {
+      solenoidTimer.reset();
+      solenoidTimer.start();
+      timerOn = true;
+    }
+  }
+
   public void turnOn() {
     compressor.setClosedLoopControl(true);
   }
@@ -44,9 +53,11 @@ public class HatchHook extends Subsystem {
   public void extend() {
     solenoid1.set(DoubleSolenoid.Value.kForward);
     solenoid2.set(DoubleSolenoid.Value.kForward);
-    solenoidTimer.reset();
-    solenoidTimer.start();
-    while (solenoidTimer.get() != 0.25) {}
+    startTimer();
+    if (solenoidTimer.get() == 0.25) {
+      solenoidTimer.stop();
+      timerOn = false;
+    }
     solenoidTimer.stop();
     solenoid1.set(DoubleSolenoid.Value.kOff);
     solenoid2.set(DoubleSolenoid.Value.kOff);
@@ -55,10 +66,11 @@ public class HatchHook extends Subsystem {
   public void retract() {
     solenoid1.set(DoubleSolenoid.Value.kReverse);
     solenoid2.set(DoubleSolenoid.Value.kReverse);
-    solenoidTimer.reset();
-    solenoidTimer.start();
-    while (solenoidTimer.get() != 0.25) {}
-    solenoidTimer.stop();
+    startTimer();
+    if (solenoidTimer.get() == 0.25) {
+      solenoidTimer.stop();
+      timerOn = false;
+    }
     solenoid1.set(DoubleSolenoid.Value.kOff);
     solenoid2.set(DoubleSolenoid.Value.kOff);
   }
