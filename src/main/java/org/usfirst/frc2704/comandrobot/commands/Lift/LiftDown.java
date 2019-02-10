@@ -5,13 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc2704.comandrobot.commands;
+package org.usfirst.frc2704.comandrobot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
-
-public class ControlHookWithButtons extends Command {
-  public ControlHookWithButtons() {
+public class LiftDown extends Command {
+  public LiftDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,8 +23,7 @@ public class ControlHookWithButtons extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.oi.joystick1_button1.whenPressed(Robot.HatchHook.extend());
-    Robot.oi.joystick1_button2.whenPressed(Robot.HatchHook.retract());
+  Robot.lift.liftDown();
   }
 
   // Make this return true when this Command no longer needs to run execute()

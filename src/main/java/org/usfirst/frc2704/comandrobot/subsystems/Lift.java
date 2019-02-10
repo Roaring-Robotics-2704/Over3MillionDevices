@@ -19,19 +19,23 @@ import edu.wpi.first.wpilibj.TimedRobot;
 public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-private WPI_TalonSRX lifttalon;
+private WPI_TalonSRX liftTalon;
 
 public Lift(){
 
-  lifttalon = new WPI_TalonSRX(1);
-  addChild("lift talon", lifttalon);
-  lifttalon.setInverted(false);
+  liftTalon = new WPI_TalonSRX(1);
+  addChild("lift talon", liftTalon);
+  liftTalon.setInverted(false);
 }
-public void Liftup(){
-  
+public void liftUp(){
+  liftTalon.set(0.5);
+
 }
-public void Liftdown(){
-  
+public void liftDown(){
+  liftTalon.set(0.5);
+}
+public void liftStop(){
+  liftTalon.set(0);
 }
   @Override
   public void initDefaultCommand() {
