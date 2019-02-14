@@ -38,7 +38,7 @@ public class MoveClawWithJoystick extends Command {
   @Override
   protected void end() {
     Robot.ballclaw.stopGrab();
-    Robot.ballclaw.stoptilt();
+    Robot.ballclaw.stopTilt();
   }
 
   // Called when another command which requires one or more of the same

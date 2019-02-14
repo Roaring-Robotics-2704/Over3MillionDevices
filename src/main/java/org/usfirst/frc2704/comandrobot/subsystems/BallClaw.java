@@ -1,7 +1,6 @@
 package org.usfirst.frc2704.comandrobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.PWMTalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class BallClaw extends Subsystem {
@@ -30,7 +29,7 @@ public class BallClaw extends Subsystem {
         tiltMotor.set(in);
     }
 
-    public void stoptilt() {
+    public void stopTilt() {
         tiltMotor.set(0);
     }
 
