@@ -23,7 +23,7 @@ public class Lift extends Subsystem {
 private WPI_VictorSPX liftMotor1;
 private WPI_VictorSPX liftMotor2;
 private SpeedControllerGroup liftMotors;
-public Lift(){
+public Lift() {
 
   liftMotor1 = new WPI_VictorSPX(1);
   addChild("lift Motor1", liftMotor1);
@@ -33,19 +33,22 @@ public Lift(){
   addChild("lift Motor2", liftMotor2);
   liftMotor2.setInverted(false);
 
-  liftMotors = new SpeedControllerGroup(liftMotor1, liftMotor2);
-  addChild("lift Motors",liftMotors);
+  //liftMotors = new SpeedControllerGroup(liftMotor1, liftMotor2);
+  //addChild("lift Motors",liftMotors);
 
 }
 public void liftUp(){
-  liftMotors.set(0.5);
+  liftMotor1.set(ControlMode.PercentOutput, 0.5);
+  liftMotor2.set(ControlMode.PercentOutput, 0.5);
 
 }
 public void liftDown(){
-  liftMotors.set(0.5);
+  liftMotor1.set(ControlMode.PercentOutput, -0.5);
+  liftMotor2.set(ControlMode.PercentOutput, -0.5);
 }
 public void liftStop(){
-  liftMotors.set(0);
+  liftMotor1.set(ControlMode.PercentOutput, 0.0);
+  liftMotor2.set(ControlMode.PercentOutput, 0.0);
 }
 
   @Override

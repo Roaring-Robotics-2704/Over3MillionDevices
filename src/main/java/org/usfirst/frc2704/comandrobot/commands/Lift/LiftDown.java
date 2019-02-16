@@ -23,8 +23,8 @@ public class LiftDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  Robot.lift.liftDown();
   if (Robot.oi.joystick1Buttons[3].get() == true){
+    Robot.lift.liftDown();
   }
   }
 
