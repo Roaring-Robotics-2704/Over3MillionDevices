@@ -20,10 +20,10 @@ import org.usfirst.frc2704.comandrobot.Robot;
 public class DriveWithJoystick extends Command {
 
     // increasing this value causes turn speed to be more higher per degree turned on the joystick.
-    private double turnSpeedModifier = 0.50;
+    private double turnSpeedModifier = 1.3;
 
     // increasing this value causes the forwards/backwards speed to be larger for any joystick input.
-    private double moveSpeedModifier = 1;
+    private double moveSpeedModifier = 0.9;
 
     // increasing this value makes the magnitude of robot twist required to enter "turn mode" higher.
     private double turnDeadZone = 0.5;
@@ -57,7 +57,7 @@ public class DriveWithJoystick extends Command {
     protected void execute() {
         if (Math.abs(Robot.oi.joystick1.getZ())<turnDeadZone) {
             // forward speed is the modified motor impulse to move the robot.
-            double forwardspeed=Robot.oi.joystick1.getY()*moveSpeedModifier;
+            double forwardspeed=-(Robot.oi.joystick1.getY()*moveSpeedModifier);
             Robot.drivetrain.tankDrive(forwardspeed,forwardspeed);
         } else {
             // turn speed is the modified motor impulse to turn the robot.
