@@ -57,10 +57,6 @@ public class DriveWithJoystick extends Command {
             leftValue -= Robot.oi.joystick1.getZ();
             rightValue += Robot.oi.joystick1.getZ();
         }
-        if (Robot.oi.joystick1.getY() < deadZone || Robot.oi.joystick1.getZ() < deadZone) {
-            leftValue = 0.0;
-            rightValue = 0.0;
-        }
         Robot.drivetrain.tankDrive(leftValue, rightValue);
     }
 
