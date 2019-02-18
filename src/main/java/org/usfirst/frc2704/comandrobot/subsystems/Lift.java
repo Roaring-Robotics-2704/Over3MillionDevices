@@ -9,11 +9,16 @@ package org.usfirst.frc2704.comandrobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import org.usfirst.frc2704.comandrobot.commands.Lift.LiftUp;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDBase;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Encoder;
 /**
  * Add your docs here.
  */
@@ -23,15 +28,23 @@ public class Lift extends Subsystem {
 private WPI_VictorSPX liftMotor1;
 private WPI_VictorSPX liftMotor2;
 private SpeedControllerGroup liftMotors;
+public Encoder liftEncoder;
+public Boolean canToggleStage;
 public Lift() {
 
   liftMotor1 = new WPI_VictorSPX(1);
   addChild("lift Motor1", liftMotor1);
-  liftMotor1.setInverted(true);
+  liftMotor1.setInverted(false);
 
   liftMotor2 = new WPI_VictorSPX(2);
   addChild("lift Motor2", liftMotor2);
-  liftMotor2.setInverted(true);
+  liftMotor2.follow(liftMotor1);
+  liftMotor2.setInverted(InvertType.FollowMaster);
+
+  liftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+  liftEncoder.setDistancePerPulse(1.440);
+
+  canToggleStage = true;
 
   //liftMotors = new SpeedControllerGroup(liftMotor1, liftMotor2);
   //addChild("lift Motors",liftMotors);
@@ -39,16 +52,27 @@ public Lift() {
 }
 public void liftUp(){
   liftMotor1.set(0.5);
-  liftMotor2.set(0.5);
 
 }
 public void liftDown(){
   liftMotor1.set(-0.5);
-  liftMotor2.set(-0.5);
 }
 public void liftStop(){
   liftMotor1.set(0.0);
-  liftMotor2.set(0.0);
+}
+
+public void goUpOneStage() {
+  liftMotor1.set(0.5);
+  if (liftEncoder.getDistance() >= 28.8) {
+    canToggleStage = true;
+  }
+}
+
+public void goDownOneStage() {
+  liftMotor1.set(0.5);
+  if (liftEncoder.getDistance() >= 28.8) {
+    canToggleStage = true;
+  }
 }
 
   @Override

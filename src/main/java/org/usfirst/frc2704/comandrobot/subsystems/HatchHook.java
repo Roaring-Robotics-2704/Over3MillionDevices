@@ -49,18 +49,17 @@ public class HatchHook extends Subsystem {
   public void extend() {
     solenoid1.set(DoubleSolenoid.Value.kForward);
     startTimer();
-    if (solenoidTimer.get() == 0.25) {
+    if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }
-    solenoidTimer.stop();
     solenoid1.set(DoubleSolenoid.Value.kOff);
   }
 
   public void retract() {
     solenoid1.set(DoubleSolenoid.Value.kReverse);
     startTimer();
-    if (solenoidTimer.get() == 0.25) {
+    if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }

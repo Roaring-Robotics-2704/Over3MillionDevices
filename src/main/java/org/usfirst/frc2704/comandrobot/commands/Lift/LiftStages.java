@@ -9,8 +9,8 @@ package org.usfirst.frc2704.comandrobot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
-public class LiftDown extends Command {
-  public LiftDown() {
+public class LiftStages extends Command {
+  public LiftStages() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,8 +23,15 @@ public class LiftDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  if (Robot.oi.joystick1Buttons[3].get() == true){
-    Robot.lift.liftDown();
+    if (Robot.oi.joystick1Buttons[6].get() == true && Robot.lift.canToggleStage == true) {
+      Robot.lift.liftEncoder.reset();
+      Robot.lift.canToggleStage = false;
+      Robot.lift.goUpOneStage();
+    }
+    else if (Robot.oi.joystick1Buttons[4].get() == true && Robot.lift.canToggleStage == true) {
+      Robot.lift.liftEncoder.reset();
+      Robot.lift.canToggleStage = false;
+      Robot.lift.goDownOneStage();
     }
   }
 
@@ -37,7 +44,6 @@ public class LiftDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.lift.liftStop();
   }
 
   // Called when another command which requires one or more of the same
