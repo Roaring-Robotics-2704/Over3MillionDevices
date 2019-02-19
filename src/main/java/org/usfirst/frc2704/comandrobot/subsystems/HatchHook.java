@@ -20,19 +20,14 @@ public class HatchHook extends Subsystem {
   private Compressor compressor;
   private Timer solenoidTimer;
   private Boolean timerOn;
-  public Boolean canUseHook;
 
   public HatchHook() {
     
     compressor = new Compressor(0);
     addChild("compressor", compressor);
 
-    solenoid1 = new DoubleSolenoid(4, 5);
+    solenoid1 = new DoubleSolenoid(1, 2);
     addChild("solenoid", solenoid1);
-    solenoid1.set(DoubleSolenoid.Value.kOff);
-    solenoidTimer = new Timer();
-    timerOn = false;
-    canUseHook = true;
   }
 
   public void startTimer() {
@@ -57,7 +52,6 @@ public class HatchHook extends Subsystem {
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
-      canUseHook = true;
     }
     solenoid1.set(DoubleSolenoid.Value.kOff);
   }
@@ -68,7 +62,6 @@ public class HatchHook extends Subsystem {
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
-      canUseHook = true;
     }
     solenoid1.set(DoubleSolenoid.Value.kOff);
   }
