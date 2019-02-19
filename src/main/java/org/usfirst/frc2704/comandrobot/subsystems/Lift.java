@@ -63,14 +63,14 @@ public void liftStop(){
 
 public void goUpOneStage() {
   liftMotor1.set(0.5);
-  if (liftEncoder.getDistance() >= 28.8) {
+  if (liftEncoder.getDistance() >= .8) {
     canToggleStage = true;
   }
 }
 
 public void goDownOneStage() {
   liftMotor1.set(0.5);
-  if (liftEncoder.getDistance() >= 28.8) {
+  if (liftEncoder.getDistance() >= .8) {
     canToggleStage = true;
   }
 }
