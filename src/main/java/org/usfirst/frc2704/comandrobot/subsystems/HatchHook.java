@@ -25,7 +25,7 @@ public class HatchHook extends Subsystem {
     
     compressor = new Compressor(0);
     addChild("compressor", compressor);
-
+    turnOn();
     solenoid1 = new DoubleSolenoid(1, 2);
     addChild("solenoid", solenoid1);
   }
@@ -48,24 +48,26 @@ public class HatchHook extends Subsystem {
 
   public void extend() {
     solenoid1.set(DoubleSolenoid.Value.kForward);
-    startTimer();
+    /*startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
-    }
-    solenoid1.set(DoubleSolenoid.Value.kOff);
+    }*/
+    //solenoid1.set(DoubleSolenoid.Value.kOff);
   }
 
   public void retract() {
-    solenoid1.set(DoubleSolenoid.Value.kReverse);
+    /*solenoid1.set(DoubleSolenoid.Value.kReverse);
     startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
-    }
+    }*/
+    solenoid1.set(DoubleSolenoid.Value.kReverse);
+  }
+  public void stop() {
     solenoid1.set(DoubleSolenoid.Value.kOff);
   }
-
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

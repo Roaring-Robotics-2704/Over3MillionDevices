@@ -8,17 +8,14 @@
 package org.usfirst.frc2704.comandrobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-import org.usfirst.frc2704.comandrobot.commands.Lift.LiftUp;
-
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PIDBase;
-import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDOutput;
 /**
  * Add your docs here.
  */
@@ -27,9 +24,13 @@ public class Lift extends Subsystem {
   // here. Call these from Commands.
 private WPI_VictorSPX liftMotor1;
 private WPI_VictorSPX liftMotor2;
+  private DigitalInput limitSwitch;
 private SpeedControllerGroup liftMotors;
 public Encoder liftEncoder;
-public Boolean canToggleStage;
+  private boolean PIDActive = false;
+  public boolean homed = false;
+  private double liftSpeed = 0.25;
+  private PIDController pid;
 public Lift() {
 
   liftMotor1 = new WPI_VictorSPX(1);
@@ -44,34 +45,73 @@ public Lift() {
   liftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
   liftEncoder.setDistancePerPulse(1.440);
 
-  canToggleStage = true;
-
-  //liftMotors = new SpeedControllerGroup(liftMotor1, liftMotor2);
-  //addChild("lift Motors",liftMotors);
+  liftMotors = new SpeedControllerGroup(liftMotor1, liftMotor2);
+  //limitSwitch = new DigitalInput(0);
+  
+  pid = new PIDController(0.01,0,0,liftEncoder,liftMotors);
+  pid.disable();
+  //pid.setInputRange(0,0);
+  pid.setOutputRange(-liftSpeed,liftSpeed);
+  // safety
 
 }
+
+public void pidConflictResolve() {
+  if (pid.isEnabled()) {
+    pid.disable();
+  }
+}
+
 public void liftUp(){
-  liftMotor1.set(0.5);
+  pidConflictResolve();
+  liftMotors.set(liftSpeed);
 
 }
 public void liftDown(){
-  liftMotor1.set(-0.5);
+  pidConflictResolve();
+  liftMotors.set(-liftSpeed);
 }
 public void liftStop(){
-  liftMotor1.set(0.0);
+  pidConflictResolve();
+  liftMotors.set(0);
+}
+/*
+public void setLiftPosition(double a) {
+  pid.setSetpoint(a);
+  pid.enable();
 }
 
+public double getLiftPosition() {
+  return liftEncoder.getDistance();
+}
+*/
+public void setSpeed(double a) {
+  pidConflictResolve();
+  liftMotors.set(a);
+}
+/*
 public void goUpOneStage() {
   liftMotor1.set(0.5);
-  if (liftEncoder.getDistance() >= 28.8) {
+  if (liftEncoder.getDistance() >= .8) {
     canToggleStage = true;
   }
 }
 
 public void goDownOneStage() {
   liftMotor1.set(0.5);
-  if (liftEncoder.getDistance() >= 28.8) {
+  if (liftEncoder.getDistance() >= .8) {
     canToggleStage = true;
+  }
+}*/
+
+public boolean home() {
+  if (limitSwitch.get()) {
+    homed=true;
+    liftEncoder.reset();
+    return true;
+  } else {
+    liftMotor1.set(-0.1);
+    return false;
   }
 }
 
