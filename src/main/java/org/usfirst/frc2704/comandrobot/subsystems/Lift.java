@@ -16,22 +16,26 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.DigitalInput;
 /**
  * Add your docs here.
  */
 public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-private WPI_VictorSPX liftMotor1;
-private WPI_VictorSPX liftMotor2;
+  private WPI_VictorSPX liftMotor1;
+  private WPI_VictorSPX liftMotor2;
   private DigitalInput limitSwitch;
-private SpeedControllerGroup liftMotors;
-public Encoder liftEncoder;
+  private SpeedControllerGroup liftMotors;
+  public Encoder liftEncoder;
   private boolean PIDActive = false;
   public boolean homed = false;
   private double liftSpeed = 0.25;
+  public boolean switchOverride = true;
   private PIDController pid;
-public Lift() {
+  private DigitalInput topSwitch;
+  private DigitalInput bottomSwitch;
+  public Lift() {
 
   liftMotor1 = new WPI_VictorSPX(1);
   addChild("lift Motor1", liftMotor1);
@@ -53,7 +57,26 @@ public Lift() {
   //pid.setInputRange(0,0);
   pid.setOutputRange(-liftSpeed,liftSpeed);
   // safety
+  topSwitch = new DigitalInput(0);
+  bottomSwitch = new DigitalInput(1);
+}
 
+public boolean isTopSwitchToggled() {
+  if (switchOverride != false) {
+    return topSwitch.get();
+  }
+  else {
+    return false;
+  }
+}
+
+public boolean isBottomSwitchToggled() {
+  if (switchOverride != false) {
+    return bottomSwitch.get();
+  }
+  else {
+    return false;
+  }
 }
 
 public void pidConflictResolve() {
