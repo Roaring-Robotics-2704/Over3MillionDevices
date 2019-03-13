@@ -27,6 +27,12 @@ public class LiftControls extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (Robot.oi.joystick1Buttons[7].get()) {
+      Robot.lift.switchOverride = true;
+    }
+    else if (Robot.oi.joystick1Buttons[6].get()) {
+      Robot.lift.switchOverride = false;
+    }
     //System.out.println("lift pos = " + Robot.lift.getLiftPosition());
     boolean manualup=Robot.oi.joystick1Buttons[5].get(),
         manualdown=Robot.oi.joystick1Buttons[3].get(),
