@@ -53,6 +53,7 @@ public Lift() {
   //pid.setInputRange(0,0);
   pid.setOutputRange(-liftSpeed,liftSpeed);
   // safety
+}
 public void pidConflictResolve() {
   if (pid.isEnabled()) {
     pid.disable();
