@@ -31,7 +31,7 @@ public class Lift extends Subsystem {
   private boolean PIDActive = false;
   public boolean homed = false;
   private double liftSpeed = 0.25;
-  public boolean switchOverride = false;
+  public boolean switchOverride = true;
   private PIDController pid;
   private DigitalInput topSwitch;
   private DigitalInput bottomSwitch;
@@ -62,7 +62,7 @@ public class Lift extends Subsystem {
 }
 
 public boolean isTopSwitchToggled() {
-  if (switchOverride == false) {
+  if (switchOverride != false) {
     return topSwitch.get();
   }
   else {
@@ -71,7 +71,7 @@ public boolean isTopSwitchToggled() {
 }
 
 public boolean isBottomSwitchToggled() {
-  if (switchOverride == false) {
+  if (switchOverride != false) {
     return bottomSwitch.get();
   }
   else {
