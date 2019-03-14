@@ -30,10 +30,6 @@ public Encoder liftEncoder;
   private boolean PIDActive = false;
   public boolean homed = false;
   private double liftSpeed = 0.25;
-<<<<<<< HEAD
-=======
-  public boolean switchOverride = true;
->>>>>>> parent of 9b6dba4... Add limit switch override buttons (joystick buttons 6 & 7)
   private PIDController pid;
 public Lift() {
 
@@ -57,32 +53,6 @@ public Lift() {
   //pid.setInputRange(0,0);
   pid.setOutputRange(-liftSpeed,liftSpeed);
   // safety
-<<<<<<< HEAD
-
-=======
-  topSwitch = new DigitalInput(0);
-  bottomSwitch = new DigitalInput(1);
-}
-
-public boolean isTopSwitchToggled() {
-  if (switchOverride != false) {
-    return topSwitch.get();
-  }
-  else {
-    return false;
-  }
-}
-
-public boolean isBottomSwitchToggled() {
-  if (switchOverride != false) {
-    return bottomSwitch.get();
-  }
-  else {
-    return false;
-  }
->>>>>>> parent of 9b6dba4... Add limit switch override buttons (joystick buttons 6 & 7)
-}
-
 public void pidConflictResolve() {
   if (pid.isEnabled()) {
     pid.disable();
