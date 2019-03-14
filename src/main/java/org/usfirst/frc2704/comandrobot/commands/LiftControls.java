@@ -34,13 +34,11 @@ public class LiftControls extends Command {
         //stagedown=Robot.oi.joystick1Buttons[4].get(),
         slowdrop=Robot.oi.joystick1Buttons[4].get();
     Lift l = Robot.lift;
-    if (manualup && l.isTopSwitchToggled() == false) {
+    if (manualup) {
         l.liftUp();
-    } 
-    else if (manualdown && l.isTopSwitchToggled() == false) {
+    } else if (manualdown) {
         l.liftDown();
-    } 
-    else if (slowdrop && l.isTopSwitchToggled() == false) {
+    } else if (slowdrop) {
         l.setSpeed(-0.1);
     /*} else if (stageup || stagedown) {
         if (l.homed) {

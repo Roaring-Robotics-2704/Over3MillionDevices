@@ -26,12 +26,12 @@ public class ControlHookWithButtons extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
     if (Robot.oi.joystick1Buttons[1].get() == true) {
       Robot.hatchhook.retract();
     } else if (Robot.oi.joystick1Buttons[2].get()) {
       Robot.hatchhook.extend();
-    }
-    /* else {
+    }/* else {
       Robot.hatchhook.stop();
     }*/
     // add compressor toggle (MUST)
