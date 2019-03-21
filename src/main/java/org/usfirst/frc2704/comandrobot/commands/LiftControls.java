@@ -10,6 +10,7 @@ package org.usfirst.frc2704.comandrobot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
 import org.usfirst.frc2704.comandrobot.subsystems.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftControls extends Command {
 
@@ -34,6 +35,8 @@ public class LiftControls extends Command {
         //stagedown=Robot.oi.joystick1Buttons[4].get(),
         slowdrop=Robot.oi.joystick1Buttons[4].get();
     Lift l = Robot.lift;
+   SmartDashboard.putNumber("liftEncoderValue", l.getDistance());
+   SmartDashboard.putNumber("liftMotorSpeed", l.getSpeed());
     if (manualup) {
         l.liftUp();
     } else if (manualdown) {

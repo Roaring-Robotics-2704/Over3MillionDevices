@@ -8,8 +8,10 @@
 package org.usfirst.frc2704.comandrobot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
+import org.usfirst.frc2704.comandrobot.subsystems.*;
 
 public class MoveClawWithJoystick extends Command {
+
   public MoveClawWithJoystick() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -24,8 +26,21 @@ public class MoveClawWithJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ballclaw.setGrab(Robot.oi.joystick2.getY());
-    Robot.ballclaw.setTilt(Robot.oi.joystick2.getZ());
+     boolean Clawup=Robot.oi.joystick2Buttons[1].get(),
+     Clawdown=Robot.oi.joystick2Buttons[2].get();
+     BallClaw B = Robot.ballclaw;
+     if (Clawup) {
+      B.setTilt(0.8);
+  } else if (Clawdown) {
+      B.setTilt(-0.8);
+  } else {
+      B.setTilt(0);
+    }
+
+     
+      B.setGrab(Robot.oi.joystick2.getY());
+    
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

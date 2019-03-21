@@ -8,6 +8,8 @@
 package org.usfirst.frc2704.comandrobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -63,21 +65,28 @@ public void pidConflictResolve() {
 
 public void liftUp(){
   pidConflictResolve();
-  
-  if (liftEncoder.getDistance() >= 1000) {
+  /*if (liftEncoder.getDistance() >= 1000) {
     liftMotors.set(liftSpeed);
   }
   else if (liftEncoder.getDistance() <= 1000) {
       liftMotors.set(0);
   }
+  */
+  liftMotors.set(liftSpeed);
 }
+
 public void liftDown(){
   pidConflictResolve();
+  /*
  if( liftEncoder.getDistance() >= 10){
   liftMotors.set(-liftSpeed);
  }
- else if( liftEncoder.getDistance() <= 10)
+ 
+ else if( liftEncoder.getDistance() <= 10){
   liftMotors.set(0);
+ }
+*/
+  liftMotors.set(-liftSpeed);
 }
 public void liftStop(){
   pidConflictResolve();
@@ -91,15 +100,18 @@ public void setLiftPosition(double a) {
   pid.setSetpoint(a);
   pid.enable();
 }
-
-public double getLiftPosition() {
+*/
+public double getDistance() {
   return liftEncoder.getDistance();
 }
-*/
+
 
 public void setSpeed(double a) {
   pidConflictResolve();
   liftMotors.set(a);
+}
+public double getSpeed(){
+  return liftMotors.get();
 }
 /*
 public void goUpOneStage() {
