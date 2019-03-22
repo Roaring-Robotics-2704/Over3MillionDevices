@@ -94,6 +94,14 @@ public class Robot extends TimedRobot {
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        driveCommand = new DriveWithJoystick();
+        ballClawCommand = new MoveClawWithJoystick();
+        liftCommand = new LiftControls();
+        hookCommand = new ControlHookWithButtons();
+        driveCommand.start();
+        ballClawCommand.start();
+        liftCommand.start();
+        hookCommand.start();
     }
 
     /**

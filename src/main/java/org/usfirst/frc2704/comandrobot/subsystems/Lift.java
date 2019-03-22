@@ -31,7 +31,7 @@ private SpeedControllerGroup liftMotors;
 public Encoder liftEncoder;
   private boolean PIDActive = false;
   public boolean homed = false;
-  private double liftSpeed = 0.25;
+  private double liftSpeed = 0.35;
   private PIDController pid;
   private boolean canToggleStage;
 public Lift() {
@@ -86,21 +86,18 @@ public void liftDown(){
   liftMotors.set(0);
  }
 */
-  liftMotors.set(-liftSpeed);
+  liftMotors.set(-0.05);
 }
 public void liftStop(){
   pidConflictResolve();
   liftMotors.set(0);
 }
-  public void setpostition(){
 
-  }
-/*
 public void setLiftPosition(double a) {
   pid.setSetpoint(a);
   pid.enable();
 }
-*/
+
 public double getDistance() {
   return liftEncoder.getDistance();
 }
