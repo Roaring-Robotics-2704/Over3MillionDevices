@@ -32,7 +32,7 @@ public class MoveClawWithJoystick extends Command {
      if (Clawup) {
       B.setTilt(0.8);
   } else if (Clawdown) {
-      B.setTilt(-0.8);
+      B.setTilt(-0.6);
   } else {
       B.setTilt(0);
     }
