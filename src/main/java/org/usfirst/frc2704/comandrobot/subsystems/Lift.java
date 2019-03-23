@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDOutput;
+import java.lang.Math.*;
 /**
  * Add your docs here.
  */
@@ -34,6 +35,7 @@ public Encoder liftEncoder;
   private double liftSpeed = 0.35;
   private PIDController pid;
   private boolean canToggleStage;
+  public double goalDistance;
 public Lift() {
 
   liftMotor1 = new WPI_TalonSRX(6);
@@ -45,7 +47,7 @@ public Lift() {
   liftMotor2.follow(liftMotor1);
   liftMotor2.setInverted(InvertType.FollowMaster);
 
-  liftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+  liftEncoder = new Encoder(1, 2, false, Encoder.EncodingType.k4X);
   liftEncoder.setDistancePerPulse(1.440);
   liftEncoder.reset();
   liftMotors = new SpeedControllerGroup(liftMotor1, liftMotor2);
@@ -73,6 +75,7 @@ public void liftUp(){
   }
   */
   liftMotors.set(liftSpeed);
+ // liftEncoder.reset();
 }
 
 public void liftDown(){
@@ -84,13 +87,20 @@ public void liftDown(){
  
  else if( liftEncoder.getDistance() <= 10){
   liftMotors.set(0);
- }
+ }e
 */
   liftMotors.set(-0.05);
+ // liftEncoder.reset();
 }
 public void liftStop(){
   pidConflictResolve();
-  liftMotors.set(0);
+  if (liftEncoder.getDistance() <= 0 && liftEncoder.getDistance() != goalDistance) {
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/1) * (liftSpeed));
+  }
+  else if (liftEncoder.getDistance() >= 1 && liftEncoder.getDistance() != goalDistance ) {
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/1) * (-liftSpeed));
+  }
+  //liftMotors.set(0);
 }
 
 public void setLiftPosition(double a) {
@@ -101,7 +111,6 @@ public void setLiftPosition(double a) {
 public double getDistance() {
   return liftEncoder.getDistance();
 }
-
 
 public void setSpeed(double a) {
   pidConflictResolve();

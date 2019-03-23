@@ -13,7 +13,8 @@ import org.usfirst.frc2704.comandrobot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftControls extends Command {
-
+    Lift l = Robot.lift;
+    
   public LiftControls() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,7 +23,7 @@ public class LiftControls extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-   
+    l.goalDistance = l.liftEncoder.getDistance();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -34,15 +35,18 @@ public class LiftControls extends Command {
         //stageup=Robot.oi.joystick1Buttons[6].get(),
         //stagedown=Robot.oi.joystick1Buttons[4].get(),
         slowdrop=Robot.oi.joystick1Buttons[4].get();
-    Lift l = Robot.lift;
-   SmartDashboard.putNumber("liftEncoderValue", l.getDistance());
+   SmartDashboard.putNumber("liftEncoderValueDistance", l.getDistance());
    SmartDashboard.putNumber("liftMotorSpeed", l.getSpeed());
+   SmartDashboard.putNumber("liftGoalDistance", l.goalDistance);
     if (manualup) {
         l.liftUp();
+        l.goalDistance = l.liftEncoder.getDistance();
     } else if (manualdown) {
         l.liftDown();
+        l.goalDistance = l.liftEncoder.getDistance();
     } else if (slowdrop) {
         l.setSpeed(-0.1);
+        l.goalDistance = l.liftEncoder.getDistance();
     /*} else if (stageup || stagedown) {
         if (l.homed) {
             if (stageup) {

@@ -1,0 +1,12 @@
+package frc.robot.subsystem;
+
+import frc.comandrobot.commands;
+import frc.comandrobot.commands;
+
+public class encoderCommand extends comandrobot;
+
+private void encoder();
+{
+    
+}
+
