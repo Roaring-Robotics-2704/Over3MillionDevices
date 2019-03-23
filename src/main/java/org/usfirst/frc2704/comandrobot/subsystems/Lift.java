@@ -11,9 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDBase;
-import edu.wpi.first.wpilibj.TimedRobot;
 /**
  * Add your docs here.
  */
@@ -40,7 +38,6 @@ public Lift() {
 public void liftUp(){
   liftMotor1.set(ControlMode.PercentOutput, 0.5);
   liftMotor2.set(ControlMode.PercentOutput, 0.5);
-
 }
 public void liftDown(){
   liftMotor1.set(ControlMode.PercentOutput, -0.5);
