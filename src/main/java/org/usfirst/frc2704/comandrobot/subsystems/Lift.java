@@ -32,7 +32,7 @@ private SpeedControllerGroup liftMotors;
 public Encoder liftEncoder;
   private boolean PIDActive = false;
   public boolean homed = false;
-  private double liftSpeed = 0.35;
+  private double liftSpeed = 0.75;
   private PIDController pid;
   private boolean canToggleStage;
   public double goalDistance;
@@ -95,10 +95,10 @@ public void liftDown(){
 public void liftStop(){
   pidConflictResolve();
   if (liftEncoder.getDistance() <= 0 && liftEncoder.getDistance() != goalDistance) {
-    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/1) * (liftSpeed));
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/20) * (liftSpeed));
   }
   else if (liftEncoder.getDistance() >= 1 && liftEncoder.getDistance() != goalDistance ) {
-    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/1) * (-liftSpeed));
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/20) * (-liftSpeed));
   }
   //liftMotors.set(0);
 }

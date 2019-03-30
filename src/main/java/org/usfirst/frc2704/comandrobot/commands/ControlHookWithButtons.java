@@ -35,6 +35,15 @@ public class ControlHookWithButtons extends Command {
       Robot.hatchhook.stop();
     }*/
     // add compressor toggle (MUST)
+    if (Robot.oi.joystick1Buttons[3].get() == true){
+      Robot.hatchhook.backRetract();
+    }
+    else if (Robot.oi.joystick1Buttons[5].get()){
+      Robot.hatchhook.backExtend();
+    }
+    /* else{
+      Robot.hatchhook.backStop();
+    }*/
   }
 
   // Make this return true when this Command no longer needs to run execute()

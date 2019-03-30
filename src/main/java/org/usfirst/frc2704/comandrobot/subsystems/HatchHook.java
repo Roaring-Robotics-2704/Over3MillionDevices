@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.Timer;
 public class HatchHook extends Subsystem {
 
   private DoubleSolenoid solenoid1;
+  private DoubleSolenoid solenoid2;
+  private DoubleSolenoid solenoidBack;
   private Compressor compressor;
   private Timer solenoidTimer;
   private Boolean timerOn;
@@ -26,8 +28,15 @@ public class HatchHook extends Subsystem {
     compressor = new Compressor(0);
     addChild("compressor", compressor);
     turnOn();
+    
     solenoid1 = new DoubleSolenoid(1, 2);
     addChild("solenoid", solenoid1);
+    
+    solenoid2 = new DoubleSolenoid(3, 4);
+    addChild("solenoid", solenoid2);
+    
+    solenoidBack = new DoubleSolenoid(5, 6);
+    addChild("solenoid", solenoidBack);
   }
 
   public void startTimer() {
@@ -48,6 +57,7 @@ public class HatchHook extends Subsystem {
 
   public void extend() {
     solenoid1.set(DoubleSolenoid.Value.kForward);
+    solenoid2.set(DoubleSolenoid.Value.kForward);
     /*startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
@@ -55,18 +65,32 @@ public class HatchHook extends Subsystem {
     }*/
     //solenoid1.set(DoubleSolenoid.Value.kOff);
   }
+  public void backExtend(){
+    solenoidBack.set(DoubleSolenoid.Value.kForward);
+    }
 
   public void retract() {
+    solenoid1.set(DoubleSolenoid.Value.kReverse);
+    solenoid2.set(DoubleSolenoid.Value.kReverse);
     /*solenoid1.set(DoubleSolenoid.Value.kReverse);
     startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }*/
-    solenoid1.set(DoubleSolenoid.Value.kReverse);
+    
+  }
+
+  public void backRetract(){
+    solenoidBack.set(DoubleSolenoid.Value.kReverse);
   }
   public void stop() {
     solenoid1.set(DoubleSolenoid.Value.kOff);
+    solenoid2.set(DoubleSolenoid.Value.kOff);
+  }
+
+  public void backStop(){
+    solenoidBack.set(DoubleSolenoid.Value.kOff);
   }
   @Override
   public void initDefaultCommand() {
