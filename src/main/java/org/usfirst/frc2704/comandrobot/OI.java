@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -78,6 +79,8 @@ public class OI {
         joystick2Buttons = initJoystickButtons(joystick2);
         // for example, access a button #5 on joystick 2 anywhere by doing:
         // Robot.oi.joystick1Buttons[5]
+        joystick1Buttons[10].whenPressed(new ServoServoForward());
+        joystick1Buttons[9].whenPressed(new ServoServoBackward());
         
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
