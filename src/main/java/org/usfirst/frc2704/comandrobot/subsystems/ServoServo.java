@@ -23,11 +23,11 @@ public class ServoServo extends Subsystem {
   }
 
   public void moveForward() {
-    mysteriousServo.set(0);
+    mysteriousServo.set(0.5);
   }
 
   public void moveBackward() {
-    mysteriousServo.set(1);
+    mysteriousServo.set(0.75);
   }
 
   @Override
