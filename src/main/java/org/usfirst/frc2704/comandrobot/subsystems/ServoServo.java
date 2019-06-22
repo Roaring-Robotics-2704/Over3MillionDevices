@@ -26,13 +26,13 @@ public class ServoServo extends Subsystem {
 
   public void moveForward() {
     canBeActivated = false;
-    mysteriousServo.set(mysteriousServo.getPosition() + distance);
+    mysteriousServo.set(0.25);
     canBeActivated = true;
   }
 
   public void moveBackward() {
     canBeActivated = false;
-    mysteriousServo.set(mysteriousServo.getPosition() - distance);
+    mysteriousServo.set(0.75);
     canBeActivated = true;
   }
 
