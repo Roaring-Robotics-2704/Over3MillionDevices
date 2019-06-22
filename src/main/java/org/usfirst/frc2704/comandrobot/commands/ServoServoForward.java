@@ -24,7 +24,9 @@ public class ServoServoForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.servoCommand.moveForward();
+    if (Robot.servoCommand.canBeActivated == true) {
+      Robot.servoCommand.moveForward();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

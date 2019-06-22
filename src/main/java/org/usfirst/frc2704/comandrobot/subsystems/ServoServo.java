@@ -18,17 +18,22 @@ public class ServoServo extends Subsystem {
   // here. Call these from Commands.
   private Servo mysteriousServo;
   private Double distance = 0.5; 
+  public Boolean canBeActivated = true;
 
   public ServoServo() {
     mysteriousServo = new Servo(6);
   }
 
   public void moveForward() {
+    canBeActivated = false;
     mysteriousServo.set(mysteriousServo.get() + distance);
+    canBeActivated = true;
   }
 
   public void moveBackward() {
+    canBeActivated = false;
     mysteriousServo.set(mysteriousServo.get() - distance);
+    canBeActivated = true;
   }
 
   @Override
