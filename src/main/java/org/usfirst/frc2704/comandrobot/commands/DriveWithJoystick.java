@@ -61,6 +61,10 @@ public class DriveWithJoystick extends Command {
             leftValue -= Robot.oi.joystick1.getZ() * turnSpeedModifier;
             rightValue += Robot.oi.joystick1.getZ() * turnSpeedModifier;
         }
+        if (Robot.lineFollower.get() == true) {
+            leftValue = 0.0;
+            rightValue = 0.0;
+        }
         Robot.drivetrain.tankDrive(rightValue, leftValue);
     }
 
