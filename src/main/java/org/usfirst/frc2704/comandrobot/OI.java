@@ -81,6 +81,7 @@ public class OI {
         // Robot.oi.joystick1Buttons[5]
         joystick1Buttons[10].toggleWhenPressed(new ServoServoForward());
         joystick1Buttons[9].toggleWhenPressed(new ServoServoBackward());
+        joystick1Buttons[11].toggleWhenPressed(new toggleStopWhenLineDetected());
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
 
