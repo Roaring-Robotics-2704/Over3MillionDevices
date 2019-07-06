@@ -27,10 +27,10 @@ public class toggleStopWhenLineDetected extends Command {
   @Override
   protected void execute() {
     if (Robot.drivetrain.stopWhenLineDetected) {
-      Robot.drivetrain.stopWhenLineDetected = true;
+      Robot.drivetrain.stopWhenLineDetected = false;
     }
     else {
-      Robot.drivetrain.stopWhenLineDetected = false;
+      Robot.drivetrain.stopWhenLineDetected = true;
     }
     SmartDashboard.getBoolean("Line Sensor On/Off", Robot.drivetrain.stopWhenLineDetected);
   }
