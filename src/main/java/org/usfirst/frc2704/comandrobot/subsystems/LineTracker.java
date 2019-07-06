@@ -14,19 +14,27 @@ import edu.wpi.first.wpilibj.DigitalInput;
  * Add your docs here.
  */
 public class LineTracker extends Subsystem {
+  private DigitalInput photoSwitch;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   
 
   public LineTracker() {
-    
+    photoSwitch = new DigitalInput(7);
   }
 
+  public void findLine(){
+    
+  }
 
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public boolean get(){
+    return photoSwitch.get();
   }
 }

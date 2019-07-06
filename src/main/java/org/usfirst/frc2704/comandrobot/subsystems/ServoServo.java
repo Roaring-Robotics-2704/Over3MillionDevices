@@ -18,11 +18,11 @@ public class ServoServo extends Subsystem {
   // here. Call these from Commands.
   private Servo mysteriousServo;
   private Double distance = 0.5;
-  private DigitalInput photoSwitch;
+  //private DigitalInput photoSwitch;
 
   public ServoServo() {
     mysteriousServo = new Servo(6);
-    photoSwitch = new DigitalInput(7);
+    //photoSwitch = new DigitalInput(7);
   }
 
   public void moveForward() {
@@ -39,7 +39,7 @@ public class ServoServo extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-public boolean get() {
-	return photoSwitch.get();
-}
+//public boolean get() {
+	//return photoSwitch.get();
+//}
 }
