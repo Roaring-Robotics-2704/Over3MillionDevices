@@ -26,7 +26,6 @@ public class TrackLine extends Command {
   protected void execute() {
     //SmartDashboard.getBoolean("photoswitch", Robot.lineFollower.get());
     System.out.println(Robot.lineFollower.get());
-    Robot.lineFollower.findLine();
   }
 
   // Make this return true when this Command no longer needs to run execute()
