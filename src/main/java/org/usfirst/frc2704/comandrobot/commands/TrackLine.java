@@ -24,7 +24,8 @@ public class TrackLine extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    SmartDashboard.getBoolean("photoswitch", Robot.lineFollower.get());
+    //SmartDashboard.getBoolean("photoswitch", Robot.lineFollower.get());
+    System.out.println(Robot.lineFollower.get());
     Robot.lineFollower.findLine();
   }
 
