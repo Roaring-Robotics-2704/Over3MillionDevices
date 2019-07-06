@@ -9,6 +9,7 @@ package org.usfirst.frc2704.comandrobot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 public class ServoServoForward extends Command {
   public ServoServoForward() {
@@ -24,7 +25,10 @@ public class ServoServoForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+      System.out.println("output is" + Robot.servoCommand.get());
+      SmartDashboard.getBoolean("photoSwitch", Robot.servoCommand.get());
       Robot.servoCommand.moveForward();
+      
   }
 
   // Make this return true when this Command no longer needs to run execute()
