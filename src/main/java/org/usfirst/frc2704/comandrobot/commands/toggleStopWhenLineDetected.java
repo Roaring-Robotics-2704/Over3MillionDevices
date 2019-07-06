@@ -10,6 +10,7 @@ package org.usfirst.frc2704.comandrobot.commands;
 import org.usfirst.frc2704.comandrobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class toggleStopWhenLineDetected extends Command {
   public toggleStopWhenLineDetected() {
@@ -31,6 +32,7 @@ public class toggleStopWhenLineDetected extends Command {
     else {
       Robot.drivetrain.stopWhenLineDetected = false;
     }
+    SmartDashboard.getBoolean("Line Sensor On/Off", Robot.drivetrain.stopWhenLineDetected);
   }
 
   // Make this return true when this Command no longer needs to run execute()
