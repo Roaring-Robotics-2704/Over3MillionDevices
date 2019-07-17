@@ -14,29 +14,30 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * Add your docs here.
  */
-public class HatchHook extends Subsystem {
+public class Pnematics extends Subsystem {
 
-  private DoubleSolenoid solenoid1;
-  private DoubleSolenoid solenoid2;
-  private DoubleSolenoid solenoidBack;
+  private DoubleSolenoid boxSolenoid;
+  private DoubleSolenoid frontSolenoid;
+  private DoubleSolenoid backSolenoid;
   private Compressor compressor;
   private Timer solenoidTimer;
   private Boolean timerOn;
 
-  public HatchHook() {
+  public Pnematics() {
     
-    compressor = new Compressor(0);
+    compressor = new Compressor(0);           
     addChild("compressor", compressor);
     turnOn();
+  
+    boxSolenoid = new DoubleSolenoid(4, 5);
+    addChild("solenoid", boxSolenoid);
     
-    solenoid1 = new DoubleSolenoid(1, 2);
-    addChild("solenoid", solenoid1);
+    frontSolenoid = new DoubleSolenoid(2, 3);
+    addChild("solenoid", frontSolenoid);
     
-    solenoid2 = new DoubleSolenoid(3, 4);
-    addChild("solenoid", solenoid2);
-    
-    solenoidBack = new DoubleSolenoid(5, 6);
-    addChild("solenoid", solenoidBack);
+    backSolenoid = new DoubleSolenoid(0, 1);
+    addChild("solenoid", backSolenoid);
+
   }
 
   public void startTimer() {
@@ -55,43 +56,48 @@ public class HatchHook extends Subsystem {
     compressor.setClosedLoopControl(false);
   }
 
-  public void extend() {
-    solenoid1.set(DoubleSolenoid.Value.kForward);
-    solenoid2.set(DoubleSolenoid.Value.kForward);
+  public void frontExtend() {
+    frontSolenoid.set(DoubleSolenoid.Value.kForward);
     /*startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }*/
     //solenoid1.set(DoubleSolenoid.Value.kOff);
-  }
-  public void backExtend(){
-    solenoidBack.set(DoubleSolenoid.Value.kForward);
     }
 
-  public void retract() {
-    solenoid1.set(DoubleSolenoid.Value.kReverse);
-    solenoid2.set(DoubleSolenoid.Value.kReverse);
-    /*solenoid1.set(DoubleSolenoid.Value.kReverse);
+  public void backExtend(){
+    backSolenoid.set(DoubleSolenoid.Value.kForward);
+    }
+
+  public void boxOpen(){
+    boxSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void frontRetract() {
+    frontSolenoid.set(DoubleSolenoid.Value.kReverse);
+   /*solenoid1.set(DoubleSolenoid.Value.kReverse);
     startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }*/
-    
   }
 
   public void backRetract(){
-    solenoidBack.set(DoubleSolenoid.Value.kReverse);
-  }
-  public void stop() {
-    solenoid1.set(DoubleSolenoid.Value.kOff);
-    solenoid2.set(DoubleSolenoid.Value.kOff);
+    backSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
-  public void backStop(){
-    solenoidBack.set(DoubleSolenoid.Value.kOff);
+  public void boxClose(){
+    boxSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
+
+  public void stop() {                                    //not sure if we need it, it might stop on it's own
+    frontSolenoid.set(DoubleSolenoid.Value.kOff);         
+    boxSolenoid.set(DoubleSolenoid.Value.kOff);
+    backSolenoid.set(DoubleSolenoid.Value.kOff);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

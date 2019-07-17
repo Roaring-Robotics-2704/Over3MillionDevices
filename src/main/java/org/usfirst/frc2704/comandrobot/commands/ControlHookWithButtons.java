@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc2704.comandrobot.commands;
+/*package org.usfirst.frc2704.comandrobot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
@@ -35,7 +35,7 @@ public class ControlHookWithButtons extends Command {
       Robot.hatchhook.stop();
     }*/
     // add compressor toggle (MUST)
-    if (Robot.oi.joystick1Buttons[3].get() == true){
+    /*if (Robot.oi.joystick1Buttons[3].get() == true){
       Robot.hatchhook.backRetract();
     }
     else if (Robot.oi.joystick1Buttons[5].get()){
@@ -44,7 +44,7 @@ public class ControlHookWithButtons extends Command {
     /* else{
       Robot.hatchhook.backStop();
     }*/
-  }
+  /*}
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -63,4 +63,4 @@ public class ControlHookWithButtons extends Command {
   @Override
   protected void interrupted() {
   }
-}
+}*/

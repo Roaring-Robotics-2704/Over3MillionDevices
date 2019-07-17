@@ -79,9 +79,16 @@ public class OI {
         joystick2Buttons = initJoystickButtons(joystick2);
         // for example, access a button #5 on joystick 2 anywhere by doing:
         // Robot.oi.joystick1Buttons[5]
+        joystick1Buttons[5].whenPressed(new FrontExtend());        //pnematics
+        joystick1Buttons[6].whenPressed(new FrontRetract());
+        joystick1Buttons[3].whenPressed(new BackExtend());
+        joystick1Buttons[4].whenPressed(new BackRetract());
+        joystick1Buttons[1].whenPressed(new BoxOpen());
+        joystick1Buttons[2].whenPressed(new BoxClose());           //pnematics
         joystick1Buttons[10].toggleWhenPressed(new ServoServoForward());
         joystick1Buttons[9].toggleWhenPressed(new ServoServoBackward());
         joystick1Buttons[11].toggleWhenPressed(new toggleStopWhenLineDetected());
+        
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
 

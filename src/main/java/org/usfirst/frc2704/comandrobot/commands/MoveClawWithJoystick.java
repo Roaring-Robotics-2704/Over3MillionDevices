@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
 package org.usfirst.frc2704.comandrobot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
@@ -61,4 +61,4 @@ public class MoveClawWithJoystick extends Command {
   @Override
   protected void interrupted() {
   }
-}
+}*/

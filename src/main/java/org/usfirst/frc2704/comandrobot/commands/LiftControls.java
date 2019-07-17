@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc2704.comandrobot.commands;
+/*package org.usfirst.frc2704.comandrobot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2704.comandrobot.Robot;
@@ -57,7 +57,8 @@ public class LiftControls extends Command {
         } else {
             //l.home();
         }
-    */} else {
+    }*/ 
+    /*else {
         l.liftStop();
     }
   }
@@ -80,4 +81,4 @@ public class LiftControls extends Command {
   @Override
   protected void interrupted() {
   }
-}
+}*/
