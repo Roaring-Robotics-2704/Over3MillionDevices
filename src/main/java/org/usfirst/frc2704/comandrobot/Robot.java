@@ -113,23 +113,23 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         driveCommand = new DriveWithJoystick();
         lineCommand = new TrackLine();
-       /*backExtendCommand = new BackExtend();
+        backExtendCommand = new BackExtend();
         backRetractCommand = new BackRetract();
         boxExtendCommand = new BoxOpen();
         boxRetractCommand = new BoxClose();
         frontExtendCommand = new FrontExtend();
-        frontRetractCommand = new FrontRetract();*/
+        frontRetractCommand = new FrontRetract();
         //ballClawCommand = new MoveClawWithJoystick();
         //liftCommand = new LiftControls();
         //hookCommand = new ControlHookWithButtons();
         driveCommand.start();
         lineCommand.start();
-        /*backExtendCommand.start();
+        backExtendCommand.start();
         backRetractCommand.start();
         boxExtendCommand.start();
         boxRetractCommand.start();
         frontExtendCommand.start();
-        frontRetractCommand.start();*/
+        frontRetractCommand.start();
         //ballClawCommand.start();
         //liftCommand.start();
         //hookCommand.start();
@@ -153,24 +153,24 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         driveCommand = new DriveWithJoystick();
         lineCommand = new TrackLine();
-        /*backExtendCommand = new BackExtend();
+        backExtendCommand = new BackExtend();
         backRetractCommand = new BackRetract();
         boxExtendCommand = new BoxOpen();
         boxRetractCommand = new BoxClose();
         frontExtendCommand = new FrontExtend();
-        frontRetractCommand = new FrontRetract();*/
+        frontRetractCommand = new FrontRetract();
         //ballClawCommand = new MoveClawWithJoystick();
         //liftCommand = new LiftControls();
         //hookCommand = new ControlHookWithButtons();
         driveCommand.start();
         lineCommand.start();
         pnematicCompressor.start();
-        /*backExtendCommand.start();
+        backExtendCommand.start();
         backRetractCommand.start();
         boxExtendCommand.start();
         boxRetractCommand.start();
         frontExtendCommand.start();
-        frontRetractCommand.start();*/
+        frontRetractCommand.start();
         //ballClawCommand.start();
         //liftCommand.start();
         //hookCommand.start();
