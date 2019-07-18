@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc2704.comandrobot.subsystems;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Timer;
@@ -19,15 +18,16 @@ public class Pnematics extends Subsystem {
   private DoubleSolenoid boxSolenoid;
   private DoubleSolenoid frontSolenoid;
   private DoubleSolenoid backSolenoid;
-  private Compressor compressor;
+  //private Compressor compressor;
   private Timer solenoidTimer;
   private Boolean timerOn;
 
   public Pnematics() {
-    
+    /*
     compressor = new Compressor(0);           
     addChild("compressor", compressor);
-    turnOn();
+    //turnOn();*/
+    
   
     boxSolenoid = new DoubleSolenoid(2, 3);
     addChild("solenoid", boxSolenoid);
@@ -48,13 +48,13 @@ public class Pnematics extends Subsystem {
     }
   }
 
-  public void turnOn() {
+  /*public void turnOn() {
     compressor.setClosedLoopControl(true);
   }
 
   public void turnOff() {
     compressor.setClosedLoopControl(false);
-  }
+  }*/
 
   public void frontExtend() {
     frontSolenoid.set(DoubleSolenoid.Value.kForward);
