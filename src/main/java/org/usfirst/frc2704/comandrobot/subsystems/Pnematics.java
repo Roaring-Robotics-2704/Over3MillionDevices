@@ -29,10 +29,10 @@ public class Pnematics extends Subsystem {
     addChild("compressor", compressor);
     turnOn();
   
-    boxSolenoid = new DoubleSolenoid(4, 5);
+    boxSolenoid = new DoubleSolenoid(2, 3);
     addChild("solenoid", boxSolenoid);
     
-    frontSolenoid = new DoubleSolenoid(2, 3);
+    frontSolenoid = new DoubleSolenoid(4, 5);
     addChild("solenoid", frontSolenoid);
     
     backSolenoid = new DoubleSolenoid(0, 1);
