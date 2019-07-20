@@ -9,6 +9,8 @@ package org.usfirst.frc2704.comandrobot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Compressor;
+import java.lang.System;
 
 /**
  * Add your docs here.
@@ -18,17 +20,16 @@ public class Pnematics extends Subsystem {
   private DoubleSolenoid boxSolenoid;
   private DoubleSolenoid frontSolenoid;
   private DoubleSolenoid backSolenoid;
-  //private Compressor compressor;
-  private Timer solenoidTimer;
-  private Boolean timerOn;
+  public Compressor compressor;
+  public Timer solenoidTimer;
+  private Boolean timerOn = false;
 
   public Pnematics() {
-    /*
+    
     compressor = new Compressor(0);           
     addChild("compressor", compressor);
-    //turnOn();*/
-    
-  
+    turnOn();
+      
     boxSolenoid = new DoubleSolenoid(2, 3);
     addChild("solenoid", boxSolenoid);
     
@@ -48,55 +49,82 @@ public class Pnematics extends Subsystem {
     }
   }
 
-  /*public void turnOn() {
+  public void turnOn() {
     compressor.setClosedLoopControl(true);
   }
 
   public void turnOff() {
     compressor.setClosedLoopControl(false);
-  }*/
+  }
 
-  public void frontExtend() {
+ public void frontExtend() {
     frontSolenoid.set(DoubleSolenoid.Value.kForward);
+   /* startTimer();
+    System.out.println("Extending the front");
+    if (solenoidTimer.get() >= 0.25) {
+      solenoidTimer.stop();
+      timerOn = false;
+    }*/
+    frontSolenoid.set(DoubleSolenoid.Value.kOff);
+    }
+
+public void frontRetract() {
+    frontSolenoid.set(DoubleSolenoid.Value.kReverse);
+   /* startTimer();
+    if (solenoidTimer.get() >= 0.25) {
+      solenoidTimer.stop();
+       timerOn = false;
+    }*/
+      frontSolenoid.set(DoubleSolenoid.Value.kOff);
+    }
+
+
+  public void backExtend(){
+    backSolenoid.set(DoubleSolenoid.Value.kForward);
     /*startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
     }*/
-    //solenoid1.set(DoubleSolenoid.Value.kOff);
-    }
-
-  public void backExtend(){
-    backSolenoid.set(DoubleSolenoid.Value.kForward);
-    }
-
-  public void boxOpen(){
-    boxSolenoid.set(DoubleSolenoid.Value.kForward);
-  }
-
-  public void frontRetract() {
-    frontSolenoid.set(DoubleSolenoid.Value.kReverse);
-   /*solenoid1.set(DoubleSolenoid.Value.kReverse);
-    startTimer();
-    if (solenoidTimer.get() >= 0.25) {
-      solenoidTimer.stop();
-      timerOn = false;
-    }*/
+    backSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
   public void backRetract(){
     backSolenoid.set(DoubleSolenoid.Value.kReverse);
+    /*startTimer();
+    if (solenoidTimer.get() >= 0.25) {
+      solenoidTimer.stop();
+      timerOn = false;
+    }*/
+    backSolenoid.set(DoubleSolenoid.Value.kOff);
   }
+
+  public void boxOpen(){
+    boxSolenoid.set(DoubleSolenoid.Value.kForward);
+    startTimer();
+    if (solenoidTimer.get() >= 0.25) {
+      solenoidTimer.stop();
+      timerOn = false;
+    }
+    boxSolenoid.set(DoubleSolenoid.Value.kOff);
+  }
+
 
   public void boxClose(){
     boxSolenoid.set(DoubleSolenoid.Value.kReverse);
+    startTimer();
+    if (solenoidTimer.get() >= 0.25) {
+      solenoidTimer.stop();
+      timerOn = false;
+    } 
+    boxSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
-  public void stop() {                                    //not sure if we need it, it might stop on it's own
+  /*public void stop() {                                    //not sure if we need it, it might stop on it's own
     frontSolenoid.set(DoubleSolenoid.Value.kOff);         
     boxSolenoid.set(DoubleSolenoid.Value.kOff);
     backSolenoid.set(DoubleSolenoid.Value.kOff);
-  }
+  }*/
 
   @Override
   public void initDefaultCommand() {

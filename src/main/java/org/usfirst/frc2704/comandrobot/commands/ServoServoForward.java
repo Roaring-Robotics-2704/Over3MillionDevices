@@ -27,7 +27,7 @@ public class ServoServoForward extends Command {
   protected void execute() {
       //System.out.println("output is" + Robot.servoCommand.get());
       //SmartDashboard.getBoolean("photoSwitch", Robot.servoCommand.get());
-      Robot.servo.moveForward();
+      //Robot.servo.moveForward();
       
   }
 
