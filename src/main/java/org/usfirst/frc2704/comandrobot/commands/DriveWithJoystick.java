@@ -53,13 +53,13 @@ public class DriveWithJoystick extends Command {
         rightValue = 0.0; //Resets the speed of the right side of the robot after each loop.
         if (Robot.oi.joystick1.getY() >= deadZone || Robot.oi.joystick1.getY() <= -deadZone) { 
             //Don't move foward/back if the joystick's raw Y value is between -deadZone and deadZone. This prevents the joystick from being oversensitive.
-            leftValue -= Robot.oi.joystick1.getY() * moveSpeedModifier;
-            rightValue -= Robot.oi.joystick1.getY() * moveSpeedModifier;
+            leftValue -= Math.pow(Robot.oi.joystick1.getY(), 3) * moveSpeedModifier;
+            rightValue -= Math.pow(Robot.oi.joystick1.getY(), 3) * moveSpeedModifier;
         }
         if (Robot.oi.joystick1.getZ() >= deadZone || Robot.oi.joystick1.getZ() <= -deadZone) { 
             //Don't turn if the joystick's raw Z value is between -deadZone and deadZone. This prevents the joysick from being oversensitive.
-            leftValue -= Robot.oi.joystick1.getZ() * turnSpeedModifier;
-            rightValue += Robot.oi.joystick1.getZ() * turnSpeedModifier;
+            leftValue -= Math.pow(Robot.oi.joystick1.getZ(), 3) * turnSpeedModifier;
+            rightValue += Math.pow(Robot.oi.joystick1.getZ(), 3) * turnSpeedModifier;
         }
         /*if (Robot.drivetrain.stopWhenLineDetected) {
             if (Robot.lineFollower.get() == true) {
