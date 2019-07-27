@@ -81,8 +81,8 @@ public class OI {
         // Robot.oi.joystick1Buttons[5]
         joystick1Buttons[3].toggleWhenPressed(new FrontExtend());        //pnematics
         joystick1Buttons[5].toggleWhenPressed(new FrontRetract());
-        joystick1Buttons[4].toggleWhenPressed(new BackExtend());
-        joystick1Buttons[6].toggleWhenPressed(new BackRetract());
+        joystick1Buttons[6].toggleWhenPressed(new BackExtend());
+        joystick1Buttons[4].toggleWhenPressed(new BackRetract());
         joystick1Buttons[1].toggleWhenPressed(new BoxOpen());
         joystick1Buttons[2].toggleWhenPressed(new BoxClose());           //pnematics
         //joystick1Buttons[10].toggleWhenPressed(new ServoServoForward());

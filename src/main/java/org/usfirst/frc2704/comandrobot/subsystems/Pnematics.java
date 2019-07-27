@@ -21,8 +21,8 @@ public class Pnematics extends Subsystem {
   private DoubleSolenoid frontSolenoid;
   private DoubleSolenoid backSolenoid;
   public Compressor compressor;
-  public Timer solenoidTimer;
-  private Boolean timerOn = false;
+  //public Timer solenoidTimer;
+  //private Boolean timerOn = false;
 
   public Pnematics() {
     
@@ -41,13 +41,13 @@ public class Pnematics extends Subsystem {
 
   }
 
-  public void startTimer() {
+ /* public void startTimer() {
     if (timerOn == false) {
       solenoidTimer.reset();
       solenoidTimer.start();
       timerOn = true;
     }
-  }
+  }*/
 
   public void turnOn() {
     compressor.setClosedLoopControl(true);
@@ -65,7 +65,7 @@ public class Pnematics extends Subsystem {
       solenoidTimer.stop();
       timerOn = false;
     }*/
-    frontSolenoid.set(DoubleSolenoid.Value.kOff);
+    //frontSolenoid.set(DoubleSolenoid.Value.kOff);
     }
 
 public void frontRetract() {
@@ -75,10 +75,13 @@ public void frontRetract() {
       solenoidTimer.stop();
        timerOn = false;
     }*/
-      frontSolenoid.set(DoubleSolenoid.Value.kOff);
+      //frontSolenoid.set(DoubleSolenoid.Value.kOff);
     }
 
-
+  public void frontSolenoidOff () {
+    frontSolenoid.set(DoubleSolenoid.Value.kOff);
+  }
+  
   public void backExtend(){
     backSolenoid.set(DoubleSolenoid.Value.kForward);
     /*startTimer();
@@ -86,7 +89,7 @@ public void frontRetract() {
       solenoidTimer.stop();
       timerOn = false;
     }*/
-    backSolenoid.set(DoubleSolenoid.Value.kOff);
+    //backSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
   public void backRetract(){
@@ -96,27 +99,35 @@ public void frontRetract() {
       solenoidTimer.stop();
       timerOn = false;
     }*/
+    //backSolenoid.set(DoubleSolenoid.Value.kOff);
+  }
+
+  public void backSolenoidOff () {
     backSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
   public void boxOpen(){
     boxSolenoid.set(DoubleSolenoid.Value.kForward);
-    startTimer();
+    /*startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
-    }
-    boxSolenoid.set(DoubleSolenoid.Value.kOff);
+    }*/
+    //boxSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
 
   public void boxClose(){
     boxSolenoid.set(DoubleSolenoid.Value.kReverse);
-    startTimer();
+    /*startTimer();
     if (solenoidTimer.get() >= 0.25) {
       solenoidTimer.stop();
       timerOn = false;
-    } 
+    } */
+    //boxSolenoid.set(DoubleSolenoid.Value.kOff);
+  }
+
+  public void boxSolenoidOff() {
     boxSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
