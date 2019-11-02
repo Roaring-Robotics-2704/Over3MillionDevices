@@ -35,14 +35,14 @@ public Encoder liftEncoder;
   private double liftSpeed = 0.75;
   private PIDController pid;
   private boolean canToggleStage;
-  public double goalDistance;
+  public double goalDistance = 0;
 public Lift() {
 
-  liftMotor1 = new WPI_TalonSRX(6);
+  liftMotor1 = new WPI_TalonSRX(1);
   addChild("lift Motor1", liftMotor1);
   liftMotor1.setInverted(false);
 
-  liftMotor2 = new WPI_TalonSRX(5);
+  liftMotor2 = new WPI_TalonSRX(2);
   addChild("lift Motor2", liftMotor2);
   liftMotor2.follow(liftMotor1);
   liftMotor2.setInverted(InvertType.FollowMaster);
@@ -94,12 +94,20 @@ public void liftDown(){
 }
 public void liftStop(){
   pidConflictResolve();
+  if (liftEncoder.getDistance() < goalDistance) {
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/75) * (liftSpeed));
+  }
+  else if (liftEncoder.getDistance() > goalDistance) {
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/20) * (-liftSpeed));
+  }
+  /*
   if (liftEncoder.getDistance() <= 0 && liftEncoder.getDistance() != goalDistance) {
-    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/20) * (liftSpeed));
+    liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/75) * (liftSpeed));
   }
   else if (liftEncoder.getDistance() >= 1 && liftEncoder.getDistance() != goalDistance ) {
     liftMotors.set((Math.abs(liftEncoder.getDistance() - goalDistance)/20) * (-liftSpeed));
   }
+  */
   //liftMotors.set(0);
 }
 
